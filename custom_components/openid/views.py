@@ -65,7 +65,6 @@ class OpenIDAuthorizeView(HomeAssistantView):
         _LOGGER.debug("OpenIDAuthorizeView full URL: %s", request.url)
         # Check if we should show consent screen
         should_show_consent = (
-        should_show_consent = (
             self.hass.data[DOMAIN].get(CONF_BLOCK_LOGIN, False)
             and params.get("client_id") is not None
             and not self._is_own_instance(request, params.get("redirect_uri"))
@@ -237,7 +236,6 @@ class OpenIDConsentView(HomeAssistantView):
         _LOGGER.debug("Storing params under state %s: %s", state, dict(original_params))
 
         query = {
-            "response_type": "code",
             "response_type": "code",
             "client_id": self.hass.data[DOMAIN][CONF_CLIENT_ID],
             "redirect_uri": redirect_uri,
